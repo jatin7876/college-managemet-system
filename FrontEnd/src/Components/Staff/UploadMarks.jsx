@@ -5,7 +5,7 @@ import Sidebar from './Sidebar';
 import { io } from 'socket.io-client';
 import axios from 'axios';
 
-const socket = io('http://localhost:3000', {
+const socket = io('https://sparkling-pamelina-jatin7876-c8ba21cb.koyeb.app', {
   reconnection: true,
   reconnectionAttempts: 5,
   reconnectionDelay: 1000,

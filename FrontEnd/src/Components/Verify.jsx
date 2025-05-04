@@ -18,7 +18,7 @@ const Verify = () => {
       const tempCode = localStorage.getItem('tempCode');
 
       console.log('Sending verify request:', { ...tempData, code: tempCode, receivedCode: verificationCode });
-      const response = await axios.post('http://localhost:3000/verify', {
+      const response = await axios.post('https://sparkling-pamelina-jatin7876-c8ba21cb.koyeb.app/verify', {
         ...tempData,
         code: tempCode,
         receivedCode: verificationCode,

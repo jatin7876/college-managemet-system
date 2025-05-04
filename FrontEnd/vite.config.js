@@ -5,16 +5,16 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   server: {
     proxy: {
-      '/login': 'http://localhost:3000',
-      '/register': 'http://localhost:3000',
-      '/student/update-profile': 'http://localhost:3000',
-      '/student/courses': 'http://localhost:3000',
-      '/student/schedule': 'http://localhost:3000', 
-      '/student/result': 'http://localhost:3000',
-      '/student/notice': 'http://localhost:3000',
-      '/student/attendance': 'http://localhost:3000', 
+      '/login': 'https://sparkling-pamelina-jatin7876-c8ba21cb.koyeb.app',
+      '/register': 'https://sparkling-pamelina-jatin7876-c8ba21cb.koyeb.app',
+      '/student/update-profile': 'https://sparkling-pamelina-jatin7876-c8ba21cb.koyeb.app',
+      '/student/courses': 'https://sparkling-pamelina-jatin7876-c8ba21cb.koyeb.app',
+      '/student/schedule': 'https://sparkling-pamelina-jatin7876-c8ba21cb.koyeb.app', 
+      '/student/result': 'https://sparkling-pamelina-jatin7876-c8ba21cb.koyeb.app',
+      '/student/notice': 'https://sparkling-pamelina-jatin7876-c8ba21cb.koyeb.app',
+      '/student/attendance': 'https://sparkling-pamelina-jatin7876-c8ba21cb.koyeb.app', 
       '/socket.io': {
-        target: 'http://localhost:3000',
+        target: 'https://sparkling-pamelina-jatin7876-c8ba21cb.koyeb.app',
         ws: true 
       }
     }

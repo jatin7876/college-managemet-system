@@ -11,7 +11,7 @@ const StudentAttendance = () => {
   const [attendance, setAttendance] = useState([]);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const socket = useMemo(() => io('http://localhost:3000'), []);
+  const socket = useMemo(() => io('https://sparkling-pamelina-jatin7876-c8ba21cb.koyeb.app'), []);
 
   useEffect(() => {
     const fetchData = async () => {

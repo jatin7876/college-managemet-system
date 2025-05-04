@@ -24,7 +24,7 @@ const App = () => {
   
 
   useEffect(() => {
-    socketRef.current = io('http://localhost:3000');
+    socketRef.current = io('https://sparkling-pamelina-jatin7876-c8ba21cb.koyeb.app');
 
     socketRef.current.on('connect', () => {
       console.log('Connected to socket server ', socketRef.current.id);

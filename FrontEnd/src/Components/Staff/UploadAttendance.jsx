@@ -10,7 +10,7 @@ const UploadAttendance = () => {
   // Initialize Socket.IO client with useMemo
   const socket = useMemo(
     () =>
-      io('http://localhost:3000', {
+      io('https://sparkling-pamelina-jatin7876-c8ba21cb.koyeb.app', {
         reconnection: true,
         reconnectionAttempts: 5,
         reconnectionDelay: 1000,

@@ -387,7 +387,9 @@ app.post('/register', async (req, res) => {
 
     if (email.toLowerCase().includes('chitkarauniversity')) {
         role = 'student';
-    } else {
+    } 
+    
+    else {
         role = 'staff';
     }
 

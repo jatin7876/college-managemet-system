@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Search, UserPlus, RefreshCw, ChevronDown, ChevronUp, UserCheck, UserX, Users } from 'lucide-react';
-import {io} from 'socket.io-client';
+
 import { useNavigate } from 'react-router';
 const AdminDashboard = () => {
   const [students, setStudents] = useState([]);
@@ -23,36 +23,10 @@ const AdminDashboard = () => {
 
     fetchUsers();
   }, []);
- function deleteuser(email){
-    const socket = io('http://localhost:3000/admin');
-    socket.emit('deleteuser', email );
-    socket.on('userdeleted', (data) => {
-      console.log(data)
-      if (data.success) {
-        setStudents((prev) => prev.filter((user) => user.email !== email));
-        setStaff((prev) => prev.filter((user) => user.email !== email));
-        setStats((prev) => ({
-          ...prev,
-          totalStudents: prev.totalStudents - 1,
-          totalStaff: prev.totalStaff - 1
-        }));
-      } else {
-        setError(data.message || 'Failed to delete user');
-      }
-    });
-    socket.on('error', (err) => {
-      setError('Server error: ' + err.message);
-    });
-    socket.on('disconnect', () => {
-      console.log('Disconnected from server');
-    });
- }
- 
-
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:3000/admin/users', {
+      const response = await fetch('https://sparkling-pamelina-jatin7876-c8ba21cb.koyeb.app/admin/users', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -228,13 +202,7 @@ const AdminDashboard = () => {
           <RefreshCw size={16} className="mr-2" />
           Refresh
         </button>
-        <button
-          onClick={() => setShowAddUserModal(true)}
-          className="flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg"
-        >
-          <UserPlus size={16} className="mr-2" />
-          Add User
-        </button>
+       
       </div>
     </div>
   );
@@ -268,7 +236,7 @@ const AdminDashboard = () => {
                 Role {getSortIcon('role')}
               </div>
             </th>
-            <th className="py-3 px-6 text-right">Actions</th>
+           
           </tr>
         </thead>
         <tbody className="text-gray-600">
@@ -295,10 +263,7 @@ const AdminDashboard = () => {
                     {user.role}
                   </span>
                 </td>
-                <td className="py-4 px-6 text-right">
-                  
-                  <button className="text-red-600 hover:underline" onClick={()=>deleteuser(user.email)}>Delete</button>
-                </td>
+                
               </tr>
             ))
           )}
@@ -307,65 +272,6 @@ const AdminDashboard = () => {
     </div>
   );
 
-  const AddUserModal = () => (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg shadow-lg w-full max-w-md mx-4">
-        <div className="p-6">
-          <h3 className="text-xl font-semibold mb-4">Add New User</h3>
-          <div className="space-y-4">
-            <div>
-              <label className="block text-gray-700 mb-1">Name</label>
-              <input 
-                type="text" 
-                name="name"
-                value={newUser.name}
-                onChange={handleInputChange}
-                className="w-full p-2 border rounded focus:ring focus:ring-blue-300" 
-              />
-            </div>
-            <div>
-              <label className="block text-gray-700 mb-1">Email</label>
-              <input 
-                type="email" 
-                name="email"
-                value={newUser.email}
-                onChange={handleInputChange}
-                className="w-full p-2 border rounded focus:ring focus:ring-blue-300" 
-              />
-            </div>
-            <div>
-              <label className="block text-gray-700 mb-1">Role</label>
-              <select 
-                name="role"
-                value={newUser.role}
-                onChange={handleInputChange}
-                className="w-full p-2 border rounded focus:ring focus:ring-blue-300"
-              >
-                <option value="student">Student</option>
-                <option value="staff">Staff</option>
-              </select>
-            </div>
-            <div className="flex justify-end space-x-3 pt-4">
-              <button 
-                type="button" 
-                className="px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded"
-                onClick={() => setShowAddUserModal(false)}
-              >
-                Cancel
-              </button>
-              <button 
-                type="button" 
-                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded"
-                onClick={handleAddUser}
-              >
-                Add User
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
 
   const renderContent = () => {
     if (loading) {
@@ -417,7 +323,7 @@ const AdminDashboard = () => {
         {renderContent()}
       </main>
       
-      {showAddUserModal && <AddUserModal />}
+      {showAddUserModal}
     </div>
   );
 };

@@ -41,7 +41,7 @@ const StudentResult = () => {
 
     const fetchResults = async (email) => {
         try {
-            const response = await axios.get('http://localhost:3000/student/result', {
+            const response = await axios.get('https://sparkling-pamelina-jatin7876-c8ba21cb.koyeb.app/student/result', {
                 params: { email },
             });
             console.log('Results response:', response.data);

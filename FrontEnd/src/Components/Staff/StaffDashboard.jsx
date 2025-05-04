@@ -7,7 +7,7 @@ import User from '../../assets/user.png';
 import { io } from 'socket.io-client';
 
 const StaffDashboard = () => {
-  const socket = useMemo(() => io('http://localhost:3000'), []);
+  const socket = useMemo(() => io('https://sparkling-pamelina-jatin7876-c8ba21cb.koyeb.app'), []);
   const [userinfo, setUserInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [courses, setCourses] = useState([]);
